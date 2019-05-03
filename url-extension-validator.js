@@ -17,6 +17,10 @@ class UrlExtensionValidator extends PageExtensions {
 			return result || RegExp(`\\${extension}$`).test(` ${url}`.toLowerCase());
 		}, false);
 	}
+	
+	chain (method) {
+		return Promise.resolve(method);
+	}
 }
 
 module.exports = UrlExtensionValidator;

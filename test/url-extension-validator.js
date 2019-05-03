@@ -33,6 +33,12 @@ describe('Creating an instance of the URL extension validator class', () => {
 		
 		assert.isFunction(validator.matchValidExtension);
 	});
+	
+	it('should export the chain() method for promise chaining', () => {
+		const validator = new UrlExtensionValidator();
+		
+		assert.isFunction(validator.chain);
+	});
 });
 
 describe('Calling the validateExtension() method', () => {
@@ -98,4 +104,32 @@ describe('Calling the matchValidExtension() method', () => {
 		});
 	});
 	
+});
+
+describe('Calling the chain() method', () => {
+	
+	it('returns a promise', () => {
+		const validator = new UrlExtensionValidator();
+		const result = validator.chain(validator.matchValidExtension('http://example.com/index.html'));
+		
+		expect(result).to.be.a('promise');
+	});
+	
+	it('resolves when supplied with the matchValidExtension(validUrl) method', () => {
+		const validator = new UrlExtensionValidator();
+		
+		validator.chain(validator.matchValidExtension('http://example.com/index.html'))
+			.then(result => {
+				expect(result).to.be.a('boolean').to.equal(true);
+			});
+	});
+	
+	it('rejects when supplied with the matchValidExtension(invalidUrl) method', () => {
+		const validator = new UrlExtensionValidator();
+		
+		validator.chain(validator.matchValidExtension('http://example.com/index.zzz'))
+		.then(result => {
+			expect(result).to.be.a('boolean').to.equal(false);
+		});
+	});
 });
