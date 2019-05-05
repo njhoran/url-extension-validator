@@ -4,7 +4,9 @@
 
 > Methods for validating URL web page extensions (ending in .aspx, .php, .htm, .html ...)
 
-TODO: Fill out this long description.
+Check if the supplied URL ends in a known web page extension or not.
+
+TODO: Enable override of the valid extensions list for custom use cases.
 
 ## Table of Contents
 
