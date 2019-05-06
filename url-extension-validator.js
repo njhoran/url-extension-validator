@@ -13,7 +13,7 @@ class UrlExtensionValidator extends PageExtensions {
 	}
 	
 	matchValidExtension (url) {
-		return UrlExtensionValidator.extensions().reduce((result, extension) => {
+		return this.extensionsList.reduce((result, extension) => {
 			return result || RegExp(`\\${extension}$`).test(` ${url}`.toLowerCase());
 		}, false);
 	}
