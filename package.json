@@ -1,6 +1,6 @@
 {
   "name": "url-extension-validator",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Methods for validating URL webpage extensions (.aspx, .htm ...)",
   "main": "url-extension-validator.js",
   "directories": {
@@ -8,7 +8,7 @@
     "test": "test"
   },
   "scripts": {
-    "test": "NODE_ENV=test mocha --recursive test/ --reporter list --timeout 5000 --exit"
+    "test": "NODE_ENV=test mocha --recursive test/ --reporter list --exit"
   },
   "keywords": [
     "URL",
@@ -22,5 +22,16 @@
   "devDependencies": {
     "chai": "^4.2.0",
     "mocha": "^6.1.4"
-  }
+  },
+  "dependencies": {
+    "safethen": "^1.0.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/njhoran/url-extension-validator.git"
+  },
+  "bugs": {
+    "url": "https://github.com/njhoran/url-extension-validator/issues"
+  },
+  "homepage": "https://github.com/njhoran/url-extension-validator#readme"
 }

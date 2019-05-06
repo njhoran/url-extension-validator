@@ -12,6 +12,12 @@ describe('Creating an instance of the URL extension validator class', () => {
 		expect(validator).to.be.an.instanceOf(UrlExtensionValidator);
 	});
 	
+	it('should handle the extensionsList property', () => {
+		const extensions = new UrlExtensionValidator({ extensionsList: [] });
+		
+		expect(extensions).to.have.property('extensionsList').that.is.an('array').to.deep.equal([]);
+	});
+	
 	it('should export the static extensions() method', () => {
 		assert.isFunction(UrlExtensionValidator.extensions);
 	});
@@ -103,7 +109,20 @@ describe('Calling the matchValidExtension() method', () => {
 			expect(validator.matchValidExtension(url)).to.be.a('boolean').to.equal(false);
 		});
 	});
+
+	it('returns false when supplied with a default extension but the extensions list has been overridden', () => {
+		const nonMatchingUrl = 'http://example.com/path/to/a/script.php';
+		const validator = new UrlExtensionValidator({ extensionsList: ['.htm', '.html'] });
 	
+		expect(validator.matchValidExtension(nonMatchingUrl)).to.be.a('boolean').to.equal(false);
+	});
+	
+	it('returns true when supplied with an extension that is valid in the overridden extensions list', () => {
+		const matchingUrl = 'http://example.com/path/to/a/WebPage.htm';
+		const validator = new UrlExtensionValidator({ extensionsList: ['.htm', '.html'] });
+		
+		expect(validator.matchValidExtension(matchingUrl)).to.be.a('boolean').to.equal(true);
+	});
 });
 
 describe('Calling the chain() method', () => {
