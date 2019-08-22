@@ -1,6 +1,6 @@
 {
   "name": "url-extension-validator",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Methods for validating URL webpage extensions (.aspx, .htm ...)",
   "main": "url-extension-validator.js",
   "directories": {
